@@ -123,12 +123,6 @@ password_manager/
 
 ---
 
-## Lizenz
-
-Dieses Projekt steht unter der MIT-Lizenz. Details findest du in der [LICENSE](LICENSE) Datei.
-
----
-
 ## Hinweise
 
 - **API Limitierungen:**  
