@@ -16,7 +16,7 @@ def main():
         [sg.Button("Login", key="login_btn", font=("Segoe UI", 12))]
     ]
 
-    # Definiere den Hauptbereich mit Symbol-Buttons neben der Tabelle
+    # Definiere den Hauptbereich mit Symbol-Buttons neben der Tabell
     main_column = [
         [sg.Table(values=[], headings=["ID", "Website", "Username", "Passwort", "Notizen"],
                   key="-TABLE-", auto_size_columns=True, display_row_numbers=False,
