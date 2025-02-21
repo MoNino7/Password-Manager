@@ -3,11 +3,16 @@ from entries import get_all_entries, add_entry, update_entry, delete_entry, gene
 
 def login_window():
     layout = [
-        [sg.Text("Master-Passwort:")],
-        [sg.Input(password_char='*', key='master')],
-        [sg.Button("Login"), sg.Button("Beenden")]
+        [sg.Text("Bitte Master-Passwort eingeben:", font=("Segoe UI", 12))],
+        [sg.Input(password_char="*", key="master", font=("Segoe UI", 12))],
+        [sg.Text("", key="error", size=(40, 1), text_color="red", font=("Segoe UI", 10))],
+        [sg.Button("Login", key="login_btn", font=("Segoe UI", 12))]
     ]
-    return sg.Window("Login", layout, finalize=True)
+    window = sg.Window("Login", layout, finalize=True)
+    # Binde die Enter-Taste an ein eigenes Event "login_enter"
+    window.bind("<Return>", "login_enter")
+    return window
+
 
 def main_window():
     table_data = []
