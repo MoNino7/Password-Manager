@@ -29,12 +29,13 @@ def entry_window(entry=None):
     layout = [
         [sg.Text("Website:"), sg.Input(entry['website'] if entry else "", key='website')],
         [sg.Text("Username:"), sg.Input(entry['username'] if entry else "", key='username')],
-        [sg.Text("Passwort:"), sg.Input(entry['password'] if entry else "", key='password')],
+        [sg.Text("Passwort:"),
+         sg.Input(entry['password'] if entry else "", key='password', enable_events=True)],
+        [sg.Text("Stärke: "), sg.Text("Noch nicht geprüft", key="pwd_strength", size=(20,1), font=("Segoe UI", 10))],
         [sg.Button("Generiere Passwort", key='-GEN-')],
         [sg.Text("Notizen:"), sg.Multiline(entry['notes'] if entry else "", key='notes', size=(40, 5))],
         [sg.Button("Speichern"), sg.Button("Abbrechen")]
     ]
     return sg.Window("Eintrag", layout, modal=True, finalize=True)
-
 def show_message(title, message):
     sg.popup(title, message)
