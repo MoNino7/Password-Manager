@@ -1,0 +1,35 @@
+import PySimpleGUI as sg
+from entries import get_all_entries, add_entry, update_entry, delete_entry, generate_password
+
+def login_window():
+    layout = [
+        [sg.Text("Master-Passwort:")],
+        [sg.Input(password_char='*', key='master')],
+        [sg.Button("Login"), sg.Button("Beenden")]
+    ]
+    return sg.Window("Login", layout, finalize=True)
+
+def main_window():
+    table_data = []
+    headings = ["ID", "Website", "Username", "Passwort", "Notizen"]
+    layout = [
+        [sg.Table(values=table_data, headings=headings, key='-TABLE-', auto_size_columns=True,
+                  display_row_numbers=False, num_rows=10, enable_events=True)],
+        [sg.Button("Neu"), sg.Button("Bearbeiten"), sg.Button("Löschen"),
+         sg.Button("Passwort generieren"), sg.Button("Aktualisieren"), sg.Button("Beenden")]
+    ]
+    return sg.Window("Password Manager", layout, finalize=True)
+
+def entry_window(entry=None):
+    layout = [
+        [sg.Text("Website:"), sg.Input(entry['website'] if entry else "", key='website')],
+        [sg.Text("Username:"), sg.Input(entry['username'] if entry else "", key='username')],
+        [sg.Text("Passwort:"), sg.Input(entry['password'] if entry else "", key='password')],
+        [sg.Button("Generiere Passwort", key='-GEN-')],
+        [sg.Text("Notizen:"), sg.Multiline(entry['notes'] if entry else "", key='notes', size=(40, 5))],
+        [sg.Button("Speichern"), sg.Button("Abbrechen")]
+    ]
+    return sg.Window("Eintrag", layout, modal=True, finalize=True)
+
+def show_message(title, message):
+    sg.popup(title, message)
